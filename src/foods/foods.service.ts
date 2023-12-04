@@ -1,19 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import * as tf from '@tensorflow/tfjs';
+import * as csvParser from 'csv-parser';
+import { diskStorage } from 'multer';
+import * as fs from 'fs';
 
 @Injectable()
 export class FoodsService {
- 
   
-  private async loadModel() {
-    return await tf.loadLayersModel('file://./model/model.json');
+  async getFoods() {
+    const results = [];
+    const foodFilePath = "public/food_nutrition_fix_1.csv";
+    const foodPromise = new Promise( (resolve, reject) => {
+    const parserOptions = { headers: false }
+    fs.createReadStream(foodFilePath)
+    .pipe(csvParser(parserOptions))
+    .on('data', (data) => results.push(data))
+    .on('end', () => {resolve(results)})
+    }
+    )
+    return foodPromise
+
   }
 
-  async predict( inputData: tf.Tensor){
-    const model = await this.loadModel();
-    const result = model.predict(inputData);
-    model.dispose();
-    return result;
-  }
+  
+
 
 }
