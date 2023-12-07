@@ -1,15 +1,25 @@
 import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { SignInDto } from './sign-in.dto';
+import { UsersService } from 'src/users/users.service';
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
+    constructor(
+        private authService: AuthService,
+        private usersService: UsersService
+        ) {}
 
     @HttpCode(HttpStatus.OK)
     @Post('login')
-    signIn(@Body() signInDto: SignInDto) {
-        return this.authService.signIn(signInDto.username, signInDto.password);
+    async login(@Body() loginData: {email: string, password: string }) {
+       
+        return await this.authService.login(loginData.email, loginData.password)
+    }
+
+    @HttpCode(HttpStatus.OK)
+    @Post('register')
+    async register(@Body() newUserData: {name: string, email: string, password: string}) {
+        return this.authService.register(newUserData)
     }
 
     @UseGuards(AuthGuard)
@@ -17,6 +27,20 @@ export class AuthController {
     getProfile(@Request() req)
     {
         return req.user;
+    }
+
+
+    //WARNING: DELETE THESE ON PRODUCTION
+
+    @Get('debug-find-many')
+    readAllUsers()
+    {
+        return this.usersService.debugGetAllUsers()
+    }
+
+    @Get('debug-delete-all')
+    deleteUsers(){
+        this.usersService.debugDeleteAllUsers()
     }
 
 }
