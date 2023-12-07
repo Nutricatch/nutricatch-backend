@@ -12,7 +12,7 @@ Body {email: string, password: string }
 Return {message: string, access_token: string}
 ```
 
-For registration, the email must be unique and the password length must be above 6 characters.
+For registration, the email must be unique and the password length must be equal or above 6 characters.
 
 
 ```

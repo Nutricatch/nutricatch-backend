@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma, User } from '@prisma/client';
-import { UserExistException } from './user-exist.exception';
 
 @Injectable()
 export class UsersService {
@@ -14,15 +13,17 @@ export class UsersService {
       }
     
       async createUser(data: Prisma.UserCreateInput){
-        const isUserAlreadyExist = await this.getUser({email: data.email})
-
-        if(isUserAlreadyExist){
-          throw new UserExistException()
+        try {
+          return await this.prismaService.user.create({data})
+        } catch (error) {
+          throw new HttpException({
+            status: HttpStatus.NOT_ACCEPTABLE,
+            error: `There is a problem creating a new user to the database using Prisma : ${error} `,
+          }, HttpStatus.NOT_ACCEPTABLE, {
+            cause: error
+          });
         }
-
-        return this.prismaService.user.create({data})
       }
-
 
       //WARNING: DELETE THESE ON PRODUCTION
       async debugGetAllUsers(){
