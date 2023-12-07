@@ -1,0 +1,315 @@
+[
+  {
+    "type": "header",
+    "version": "5.2.0",
+    "comment": "Export to JSON plugin for PHPMyAdmin"
+  },
+  { "type": "database", "name": "food_nutrition" },
+  {
+    "type": "table",
+    "name": "food_nutrition",
+    "database": "food_nutrition",
+    "data": [
+      {
+        "nama": "apel",
+        "portion": "182gr",
+        "kalori": "80",
+        "karbohidrat": "21.27gr",
+        "lemak": "0.26gr",
+        "protein": "0.4gr",
+        "glukosa": "16gr",
+        "sodium": "2mg"
+      },
+      {
+        "nama": "ayam_goreng",
+        "portion": "100g",
+        "kalori": "260",
+        "karbohidrat": "10.76gr",
+        "lemak": "14.55gr",
+        "protein": "21.93gr",
+        "glukosa": "0.26gr",
+        "sodium": "350mg"
+      },
+      {
+        "nama": "ayam_pop",
+        "portion": "100gr",
+        "kalori": "195",
+        "karbohidrat": "13g",
+        "lemak": "7.72gr",
+        "protein": "29.55gr",
+        "glukosa": "0gr",
+        "sodium": "393mg"
+      },
+      {
+        "nama": "bakso_kuah",
+        "portion": "120gr",
+        "kalori": "190",
+        "karbohidrat": "12gr",
+        "lemak": "9gr",
+        "protein": "14gr",
+        "glukosa": "0gr",
+        "sodium": "600mg"
+      },
+      {
+        "nama": "cumi_tepung",
+        "portion": "85gr",
+        "kalori": "106",
+        "karbohidrat": "8.42gr",
+        "lemak": "1.84gr",
+        "protein": "12.86gr",
+        "glukosa": "0.56gr",
+        "sodium": "284mg"
+      },
+      {
+        "nama": "daging_rendang",
+        "portion": "100gr",
+        "kalori": "195",
+        "karbohidrat": "4.49gr",
+        "lemak": "11.07gr",
+        "protein": "19.68gr",
+        "glukosa": "1.31gr",
+        "sodium": "184mg"
+      },
+      {
+        "nama": "gado_gado",
+        "portion": "100gr",
+        "kalori": "400",
+        "karbohidrat": "34gr",
+        "lemak": "0gr",
+        "protein": "56gr",
+        "glukosa": "0gr",
+        "sodium": "0gr"
+      },
+      {
+        "nama": "gulai_ikan",
+        "portion": "240gr",
+        "kalori": "241",
+        "karbohidrat": "241gr",
+        "lemak": "11.02gr",
+        "protein": "29.76gr",
+        "glukosa": "1.52gr",
+        "sodium": "405mg"
+      },
+      {
+        "nama": "ikan_goreng",
+        "portion": "150gr",
+        "kalori": "253",
+        "karbohidrat": "3.32gr",
+        "lemak": "10.38gr",
+        "protein": "36.82gr",
+        "glukosa": "0.29gr",
+        "sodium": "291mg"
+      },
+      {
+        "nama": "kacang_rebus",
+        "portion": "100gr",
+        "kalori": "318",
+        "karbohidrat": "21.26gr",
+        "lemak": "22.01gr",
+        "protein": "13.5gr",
+        "glukosa": "2.47gr",
+        "sodium": "751mg"
+      },
+      {
+        "nama": "kentang_goreng",
+        "portion": "70gr",
+        "kalori": "192",
+        "karbohidrat": "24.96gr",
+        "lemak": "9.84gr",
+        "protein": "2.44gr",
+        "glukosa": "0.41gr",
+        "sodium": "210mg"
+      },
+      {
+        "nama": "lemon",
+        "portion": "7gr",
+        "kalori": "2",
+        "karbohidrat": "0.65gr",
+        "lemak": "0.02gr",
+        "protein": "0.08gr",
+        "glukosa": "0.18gr",
+        "sodium": "0mg"
+      },
+      {
+        "nama": "mangga",
+        "portion": "140gr",
+        "kalori": "135",
+        "karbohidrat": "35.19gr",
+        "lemak": "0.56gr",
+        "protein": "1.06gr",
+        "glukosa": "30.64gr",
+        "sodium": "4mg"
+      },
+      {
+        "nama": "mie_goreng",
+        "portion": "80gr",
+        "kalori": "380",
+        "karbohidrat": "52gr",
+        "lemak": "12gr",
+        "protein": "8gr",
+        "glukosa": "6gr",
+        "sodium": "680mg"
+      },
+      {
+        "nama": "mie_kuah",
+        "portion": "69gr",
+        "kalori": "300",
+        "karbohidrat": "43gr",
+        "lemak": "11gr",
+        "protein": "7gr",
+        "glukosa": "3gr",
+        "sodium": "1330mg"
+      },
+      {
+        "nama": "nanas",
+        "portion": "100gr",
+        "kalori": "48",
+        "karbohidrat": "12.63gr",
+        "lemak": "0.12gr",
+        "protein": "0.54gr",
+        "glukosa": "9.26gr",
+        "sodium": "1mg"
+      },
+      {
+        "nama": "nasi_goreng",
+        "portion": "149gr",
+        "kalori": "247",
+        "karbohidrat": "31.47gr",
+        "lemak": "9gr",
+        "protein": "9.37gr",
+        "glukosa": "1.04gr",
+        "sodium": "450mg"
+      },
+      {
+        "nama": "opor_ayam",
+        "portion": "240gr",
+        "kalori": "392",
+        "karbohidrat": "13.43gr",
+        "lemak": "20.81gr",
+        "protein": "39.67gr",
+        "glukosa": "4.24gr",
+        "sodium": "525mg"
+      },
+      {
+        "nama": "pear",
+        "portion": "450gr",
+        "kalori": "96",
+        "karbohidrat": "25.66gr",
+        "lemak": "0.2gr",
+        "protein": "0.63gr",
+        "glukosa": "16.27gr",
+        "sodium": "2mg"
+      },
+      {
+        "nama": "pempek",
+        "portion": "200gr",
+        "kalori": "335",
+        "karbohidrat": "22.51gr",
+        "lemak": "14.97gr",
+        "protein": "25.83gr",
+        "glukosa": "4.4gr",
+        "sodium": "441mg"
+      },
+      {
+        "nama": "pisang",
+        "portion": "31gr",
+        "kalori": "105",
+        "karbohidrat": "26.95gr",
+        "lemak": "0.39gr",
+        "protein": "1.29gr",
+        "glukosa": "14.43gr",
+        "sodium": "1mg"
+      },
+      {
+        "nama": "sate_bakar",
+        "portion": "45gr",
+        "kalori": "101",
+        "karbohidrat": "2.19gr",
+        "lemak": "6.67gr",
+        "protein": "8.79gr",
+        "glukosa": "0.89gr",
+        "sodium": "160mg"
+      },
+      {
+        "nama": "sayur_asam",
+        "portion": "240gr",
+        "kalori": "80",
+        "karbohidrat": "12.9gr",
+        "lemak": "2.76gr",
+        "protein": "3.18gr",
+        "glukosa": "4.75gr",
+        "sodium": "308mg"
+      },
+      {
+        "nama": "sayur_bayam",
+        "portion": "120gr",
+        "kalori": "43",
+        "karbohidrat": "9.17gr",
+        "lemak": "0.44gr",
+        "protein": "2.14gr",
+        "glukosa": "3.38gr",
+        "sodium": "195mg"
+      },
+      {
+        "nama": "semangka",
+        "portion": "28gr",
+        "kalori": "19",
+        "karbohidrat": "1.13gr",
+        "lemak": "0.02gr",
+        "protein": "0.09gr",
+        "glukosa": "0.93gr",
+        "sodium": "0mg"
+      },
+      {
+        "nama": "somay",
+        "portion": "75gr",
+        "kalori": "103",
+        "karbohidrat": "12.23gr",
+        "lemak": "6gr",
+        "protein": "19gr",
+        "glukosa": "0.19gr",
+        "sodium": "264mg"
+      },
+      {
+        "nama": "tahu_goreng",
+        "portion": "2gr",
+        "kalori": "35",
+        "karbohidrat": "1.36gr",
+        "lemak": "0.49gr",
+        "protein": "2.23gr",
+        "glukosa": "0.35gr",
+        "sodium": "2mg"
+      },
+      {
+        "nama": "telur_balado",
+        "portion": "35gr",
+        "kalori": "71",
+        "karbohidrat": "1.22gr",
+        "lemak": "5.75gr",
+        "protein": "3.57gr",
+        "glukosa": "0.77gr",
+        "sodium": "125mg"
+      },
+      {
+        "nama": "telur_dadar",
+        "portion": "75gr",
+        "kalori": "93",
+        "karbohidrat": "0.42gr",
+        "lemak": "7.33gr",
+        "protein": "6.48gr",
+        "glukosa": "0.4gr",
+        "sodium": "98mg"
+      },
+      {
+        "nama": "tempe_goreng",
+        "portion": "4gr",
+        "kalori": "34",
+        "karbohidrat": "1.79gr",
+        "lemak": "2.28gr",
+        "protein": "2gr",
+        "glukosa": "0.03gr",
+        "sodium": "42mg"
+      }
+    ]
+  }
+]
