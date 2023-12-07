@@ -8,6 +8,6 @@ import { jwtConstants } from './constant';
   controllers: [AuthController],
   providers: [AuthService],
   imports: [UsersModule,
-     JwtModule.register({global: true, secret: jwtConstants.secret, signOptions: {expiresIn: '60s'}})]
+     JwtModule.register({global: true, secret: jwtConstants.secret, signOptions: {expiresIn: '7d'}})]
 })
 export class AuthModule {}
