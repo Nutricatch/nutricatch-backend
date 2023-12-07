@@ -2,7 +2,7 @@
 
 ## Authentication
 
-Login and register endpoints are available to get an access token. This token is required to access the rest of the API. The token is valid for 1 hour.
+Login and register endpoints are available to get an access token. This token is required to access the rest of the API. The token is valid for 7 days.
 
 ```
 POST https://examplehost:3000/auth/login 
@@ -12,7 +12,7 @@ Body {email: string, password: string }
 Return {message: string, access_token: string}
 ```
 
-For registration, the email must be unique.
+For registration, the email must be unique and the password length must be above 6 characters.
 
 
 ```
