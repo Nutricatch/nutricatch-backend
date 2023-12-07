@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Prisma, User } from '@prisma/client';
 
-
-export interface User {
+export interface DummyUser {
   userId: number;
   username: string;
   password: string;
@@ -9,7 +10,12 @@ export interface User {
 
 @Injectable()
 export class UsersService {
-    private readonly users:User[] = [
+    constructor(
+      private prismaService: PrismaService
+
+    ) {}
+
+    private readonly users:DummyUser[] = [
         {
           userId: 1,
           username: 'john',
@@ -22,8 +28,16 @@ export class UsersService {
         },
       ];
 
-      async findOne(username: string): Promise<User | undefined> {
+      async findOne(username: string): Promise<DummyUser | undefined> {
         return this.users.find(user => user.username === username);
+      }
+
+      async user(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User|null> {
+        return this.prismaService.user.findUnique({where: userWhereUniqueInput})
+      }
+
+      async createUser(data: Prisma.UserCreateInput){
+        return this.prismaService.user.create({data})
       }
 
       
