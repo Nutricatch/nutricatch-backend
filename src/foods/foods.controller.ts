@@ -1,6 +1,15 @@
-import { Controller, Post, UseInterceptors, UploadedFile, Get, Res, HttpException, HttpStatus } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  Controller,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  Get,
+  Res,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { FoodsService } from './foods.service';
-
 
 @Controller('foods')
 export class FoodsController {
@@ -8,8 +17,7 @@ export class FoodsController {
 
   @Get()
   async getFoods() {
-    const foodData = await this.foodService.getFoods()
-    return foodData
+    const foodData = await this.foodService.getFoods();
+    return foodData;
   }
-
 }
