@@ -24,13 +24,4 @@ export class UsersService {
           });
         }
       }
-
-      //WARNING: DELETE THESE ON PRODUCTION
-      async debugGetAllUsers(){
-        return this.prismaService.user.findMany()
-      }
-
-      async debugDeleteAllUsers(){
-        return this.prismaService.user.deleteMany()
-      }
 }
