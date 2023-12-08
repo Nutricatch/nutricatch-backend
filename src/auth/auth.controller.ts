@@ -30,17 +30,4 @@ export class AuthController {
     }
 
 
-    //WARNING: DELETE THESE ON PRODUCTION
-
-    @Get('debug-find-many')
-    readAllUsers()
-    {
-        return this.usersService.debugGetAllUsers()
-    }
-
-    @Get('debug-delete-all')
-    deleteUsers(){
-        this.usersService.debugDeleteAllUsers()
-    }
-
 }
