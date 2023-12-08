@@ -1,18 +1,14 @@
-import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get, ValidationPipe } from '@nestjs/common';
+import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { UsersService } from 'src/users/users.service';
 @Controller('auth')
 export class AuthController {
     constructor(
-        private authService: AuthService,
-        private usersService: UsersService
-        ) {}
+        private authService: AuthService) {}
 
     @HttpCode(HttpStatus.OK)
     @Post('login')
     async login(@Body() loginData: {email: string, password: string }) {
-       
         return await this.authService.login(loginData.email, loginData.password)
     }
 
