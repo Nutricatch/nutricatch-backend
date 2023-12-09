@@ -1,6 +1,7 @@
 import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+
 @Controller('auth')
 export class AuthController {
     constructor(
@@ -17,7 +18,7 @@ export class AuthController {
     async register(@Body() newUserData: {name: string, email: string, password: string}) {
         return this.authService.register(newUserData)
     }
-
+    
     @UseGuards(AuthGuard)
     @Get('profile')
     getProfile(@Request() req)
