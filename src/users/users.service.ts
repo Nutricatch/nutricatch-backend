@@ -8,7 +8,7 @@ export class UsersService {
       private prismaService: PrismaService
     ) {}
 
-      async getUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User|null> {
+      async getUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User> {
         return this.prismaService.user.findUnique({where: userWhereUniqueInput})
       }
     
@@ -23,14 +23,5 @@ export class UsersService {
             cause: error
           });
         }
-      }
-
-      //WARNING: DELETE THESE ON PRODUCTION
-      async debugGetAllUsers(){
-        return this.prismaService.user.findMany()
-      }
-
-      async debugDeleteAllUsers(){
-        return this.prismaService.user.deleteMany()
       }
 }

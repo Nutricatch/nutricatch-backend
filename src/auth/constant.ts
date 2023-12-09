@@ -1,4 +1,8 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 export const jwtConstants = {
-    //TODO
-    secret: 'TODO: CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.',
+    
+    secret: process.env.JWT_CONSTANT,
   };
