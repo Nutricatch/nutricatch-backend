@@ -1,14 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  Controller,
-  Post,
-  UseInterceptors,
-  UploadedFile,
-  Get,
-  Res,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { FoodsService } from './foods.service';
 
 @Controller('foods')
