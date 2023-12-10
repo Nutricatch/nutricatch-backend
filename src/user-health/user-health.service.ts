@@ -1,16 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma, Health } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class UserHealthService {
-  constructor(private prismaService: PrismaService){}
+  constructor(
+    private prismaService: PrismaService,
+    private usersService: UsersService
+    ){}
 
-  async userHealth(where: Prisma.HealthWhereUniqueInput){
-    return this.prismaService.health.findUnique({where})
+  async userHealth(where: Prisma.UserWhereUniqueInput){
+    let userHealth = await this.prismaService.health.findUnique({
+      where: {userId: where.id}
+    })
+
+    if (!userHealth) {
+      userHealth = await this.createUserHealth({
+        user: {connect: { id: where.id} }
+      })
+    }
+
+    return userHealth
   }
 
-  async setupUserHealth(data: Prisma.HealthCreateInput) {
+  async createUserHealth(data: Prisma.HealthCreateInput) {
     return this.prismaService.health.create({data})
   }
 
