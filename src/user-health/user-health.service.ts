@@ -10,26 +10,34 @@ export class UserHealthService {
     private usersService: UsersService
     ){}
 
-  async userHealth(where: Prisma.UserWhereUniqueInput){
+  async userHealth(userId: number){
     let userHealth = await this.prismaService.health.findUnique({
-      where: {userId: where.id}
+      where: {userId}
     })
 
     if (!userHealth) {
       userHealth = await this.createUserHealth({
-        user: {connect: { id: where.id} }
+        user: {connect: { id: userId} }
       })
     }
 
     return userHealth
   }
 
-  async createUserHealth(data: Prisma.HealthCreateInput) {
+  private async createUserHealth(data: Prisma.HealthCreateInput) {
     return this.prismaService.health.create({data})
   }
 
-  async updateUserHealth(where: Prisma.HealthWhereUniqueInput, data: Prisma.HealthUpdateInput){
-    return this.prismaService.health.update({data, where})
+  async updateUserHealth(userId: number, data: Prisma.HealthUpdateInput){
+
+    //TODO
+    // Get user health by user id
+    // Get user health id
+    // Update
+
+    const userHealth = await this.userHealth(userId)
+
+    return this.prismaService.health.update({data, where: {id: userHealth.id}})
   }
 
   
