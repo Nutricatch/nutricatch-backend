@@ -1,0 +1,8 @@
+portion = gram (gr)
+calories = KKal
+carbs = gram (gr)
+fat = gram (gr)
+protein = gram (gr)
+glukosa = gram (gr)
+sodium = miligram (mg)
+fibers = gram (gr)
