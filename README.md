@@ -1,7 +1,10 @@
 # Nutricath Backend
 
-## Authentication
+## OPEN API
+Open API documentation is available at https://examplehost:3000/api
 
+
+## Authentication
 Login and register endpoints are available to get an access token. This token is required to access the rest of the API. The token is valid for 7 days.
 
 ```
@@ -30,11 +33,6 @@ To use this API, you need to include your API key in the Authorization header of
 
 ```curl
 Authorization: Bearer ACCESS_TOKEN
-```
-This api is not yet finished and will be updated soon.
-
-```
-GET https://examplehost:3000/auth/profile -> {username: string}
 ```
 
 ## Installation
