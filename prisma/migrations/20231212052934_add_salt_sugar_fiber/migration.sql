@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "DailyConsumtion" ADD COLUMN     "fiber" DOUBLE PRECISION,
+ADD COLUMN     "salt" DOUBLE PRECISION,
+ADD COLUMN     "sugar" DOUBLE PRECISION;

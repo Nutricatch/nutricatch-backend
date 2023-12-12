@@ -20,7 +20,7 @@ export class AuthService {
             throw new UnauthorizedException();
           }
 
-          const token = await this.generateToken(user.id, user.name)
+          const token = await this.generateToken(user.id, user.name, user.email)
           return {message: "login complete", access_token: token};
         } catch {
           throw new UnauthorizedException();
@@ -42,13 +42,13 @@ export class AuthService {
 
 
       const userData = await this.usersService.createUser({ ...newUserData, password: hash,})
-      const token = await this.generateToken(userData.id, userData.name)
+      const token = await this.generateToken(userData.id, userData.name, userData.email)
       
       return {message: "register complete", access_token: token}
     }
 
-    private async generateToken(userId: number, username: string){
-      const payload = {sub: userId, username}
+    private async generateToken(userId: number, username: string, email: string){
+      const payload = {userId, username, email}
       const token = await this.jwtService.signAsync(payload)
       return token
     }
