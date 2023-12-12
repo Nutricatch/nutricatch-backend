@@ -16,6 +16,9 @@ model DailyConsumtion {
   carbohydrates Float?
   fat Float?
   protein Float?
+  salt Float?
+  sugar Float?
+  fiber Float?
   health Health @relation(fields: [healthId], references: [id] )
   healthId Int
 }
