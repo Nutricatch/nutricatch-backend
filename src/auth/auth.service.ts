@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException, HttpException, HttpStatus} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -11,13 +12,20 @@ export class AuthService {
 
     async login(email: string, password: string){
 
-        const user = await this.usersService.getUser({email})
+        try{
+          const user = await this.usersService.getUser({email})
+          const isPasswordMatch = await bcrypt.compare(password, user?.password);
 
-        if (user?.password !== password) {
+          if (!isPasswordMatch) {
+            throw new UnauthorizedException();
+          }
+
+          const token = await this.generateToken(user.id, user.name)
+          return {message: "login complete", access_token: token};
+        } catch {
           throw new UnauthorizedException();
         }
-        const token = this.generateToken(user.id, user.name)
-        return {message: "login complete", access_token: token};
+
       }
     
     async register(newUserData: {name: string, email: string, password: string}){
@@ -29,9 +37,12 @@ export class AuthService {
           error: `Password is not valid, register failed`,
         }, HttpStatus.NOT_ACCEPTABLE);        
       }
-      
-      const userData = await this.usersService.createUser(newUserData)
-      const token = this.generateToken(userData.id, userData.name)
+    
+      const hash = await this.hashPassword(newUserData.password)
+
+
+      const userData = await this.usersService.createUser({ ...newUserData, password: hash,})
+      const token = await this.generateToken(userData.id, userData.name)
       
       return {message: "register complete", access_token: token}
     }
@@ -40,6 +51,12 @@ export class AuthService {
       const payload = {sub: userId, username}
       const token = await this.jwtService.signAsync(payload)
       return token
+    }
+
+    private async hashPassword(password: string): Promise<string> {
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      return hashedPassword;
     }
 
     private isPasswordValid(password: string, minLength: number){
