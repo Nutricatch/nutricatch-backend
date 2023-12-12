@@ -1,8 +1,6 @@
-import { Controller, Get, UseGuards, Request, Post, Body, ParseIntPipe, ParseFloatPipe, ValidationPipe, UsePipes} from '@nestjs/common';
+import { Controller, Get, UseGuards, Request, Post, Body} from '@nestjs/common';
 import { UserHealthService } from './user-health.service';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { UsersService } from 'src/users/users.service';
-import { Gender } from '@prisma/client';
 import { UpdateUserHealthDTO } from './update-user-health.dto';
 
 
@@ -33,4 +31,7 @@ export class UserHealthController {
         const userId:number = req.user.userId;
         return this.userHealthService.updateUserHealth(userId, postData)
     }
+
+    
+
 }

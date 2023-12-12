@@ -30,16 +30,9 @@ export class UserHealthService {
 
   async updateUserHealth(userId: number, data: Prisma.HealthUpdateInput){
 
-    //TODO
-    // Get user health by user id
-    // Get user health id
-    // Update
-
     const userHealth = await this.userHealth(userId)
-
+    
     return this.prismaService.health.update({data, where: {id: userHealth.id}})
   }
-
-  
 
 }
