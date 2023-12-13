@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards, Request, Post, Body} from '@nestjs/common';
 import { UserHealthService } from './user-health.service';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { UpdateUserHealthDTO } from './update-user-health.dto';
+import { UpdateUserHealthDTO } from './dtos/update-user-health.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('user-health')

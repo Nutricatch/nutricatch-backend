@@ -2,9 +2,10 @@ import { Controller, Post, Get, UseGuards, Body, Request, UsePipes, ParseIntPipe
 import { AuthGuard } from 'src/auth/auth.guard';
 import { DailyConsumtionService } from './daily-consumtion.service';
 import { Prisma } from '@prisma/client';
-import { CreateDailyConsumtionDTO } from './create-daily-consumtion.dto';
+import { CreateDailyConsumtionDTO } from './dtos/create-daily-consumtion.dto';
 import { DateQueryDto } from './date-query.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { DeleteDailyConsumtionByIdDTO } from './dtos/delete-daily-consumtion.dto';
 @Controller('daily-consumtion')
 export class DailyConsumtionController {
 
@@ -34,6 +35,14 @@ export class DailyConsumtionController {
     async createDailyConsumtion(@Request() req, @Body() postData: CreateDailyConsumtionDTO) {
         const userId: number = req.user.userId;
         return await this.dailyConsumtionService.createDailyConsumtion(userId, postData)
+    }
+
+    @ApiTags('User Daily Consumtion')
+    @UseGuards(AuthGuard)
+    @Post('delete-daily-consumtion-by-id')
+    async deleteDailyConsumtionById(@Request() req, @Body() postData: DeleteDailyConsumtionByIdDTO){
+        const userId: number = req.user.userId;
+        return await this.dailyConsumtionService.deleteDailyConsumtionById(userId, postData.consumtionId)
     }
     
 }
