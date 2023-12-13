@@ -2,12 +2,14 @@ import { Injectable, UnauthorizedException, HttpException, HttpStatus} from '@ne
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { UserHealthService } from 'src/user-health/user-health.service';
 
 @Injectable()
 export class AuthService {
     constructor(
       private usersService: UsersService,
       private jwtService: JwtService,
+      private userHealthService: UserHealthService
       ) {}
 
     async login(email: string, password: string){
@@ -29,21 +31,17 @@ export class AuthService {
       }
     
     async register(newUserData: {name: string, email: string, password: string}){
-
-      const isPasswordValid = this.isPasswordValid(newUserData.password, 6)
-      if(!isPasswordValid){
-        throw new HttpException({
-          status: HttpStatus.NOT_ACCEPTABLE,
-          error: `Password is not valid, register failed`,
-        }, HttpStatus.NOT_ACCEPTABLE);        
-      }
     
       const hash = await this.hashPassword(newUserData.password)
-
-
       const userData = await this.usersService.createUser({ ...newUserData, password: hash,})
       const token = await this.generateToken(userData.id, userData.name, userData.email)
-      
+
+      this.userHealthService.createUserHealth({
+        user: {
+          connect: {id: userData.id}
+        }
+      })
+
       return {message: "register complete", access_token: token}
     }
 
@@ -59,9 +57,6 @@ export class AuthService {
       return hashedPassword;
     }
 
-    private isPasswordValid(password: string, minLength: number){
-      const isValid = password.length >= minLength
-      return isValid;
-    }
+  
 
 }

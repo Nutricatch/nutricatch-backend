@@ -15,16 +15,10 @@ export class UserHealthService {
       where: {userId}
     })
 
-    if (!userHealth) {
-      userHealth = await this.createUserHealth({
-        user: {connect: { id: userId} }
-      })
-    }
-
     return userHealth
   }
 
-  private async createUserHealth(data: Prisma.HealthCreateInput) {
+  async createUserHealth(data: Prisma.HealthCreateInput) {
     return this.prismaService.health.create({data})
   }
 
