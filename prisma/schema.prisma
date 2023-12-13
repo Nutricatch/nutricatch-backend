@@ -29,9 +29,11 @@ enum Gender{
 }
 
 enum ActivityLevel{
-  LIGHT
-  MODERATE
-  ATHLETIC
+  SEDENTARY
+  LIGHTLY 
+  MODERATELY 
+  VERY_ACTIVE
+  EXTREMELY_ACTIVE
 }
 
 model Health{

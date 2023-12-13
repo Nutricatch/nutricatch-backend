@@ -31,7 +31,11 @@ export class UpdateUserHealthDTO{
     @IsNotEmpty()
     gender?: Gender
     
-    @ApiProperty({enum: ['LIGHT', 'MODERATE', 'ATHLETIC']})
+    @ApiProperty({enum: ["SEDENTARY",
+        "LIGHTLY",
+        "MODERATELY",
+        "VERY_ACTIVE",
+        "EXTREMELY_ACTIVE"]})
     @IsEnum(ActivityLevel, {
         message: 'activityLevel must be one of the following values: ' + Object.values(ActivityLevel).join(', '),
         })

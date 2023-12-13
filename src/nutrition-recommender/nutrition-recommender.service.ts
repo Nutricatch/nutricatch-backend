@@ -8,10 +8,10 @@ export class NutritionRecommenderService {
         private userHealthService: UserHealthService
     ){}
 
-    async getUserDailyRecommendation(userId: number){
+    async getDailyCaloriesRecommendation(userId: number){
         const userHealth = await this.userHealthService.userHealth(userId)
-        if(!userHealth.gender || !userHealth.weight || !userHealth.age){
-            throw new NotFoundException("User data is not found")
+        if(!userHealth.gender || !userHealth.weight || !userHealth.age || !userHealth.height){
+            throw new NotFoundException("User data is not enough to calculate recommendation")
         }
 
         
