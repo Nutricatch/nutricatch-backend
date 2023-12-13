@@ -1,7 +1,7 @@
 import { Controller, Get, Request } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { TokenGuard } from 'src/auth/token.guard';
 import { NutritionRecommenderService } from './nutrition-recommender.service';
 
 @Controller('nutrition-recommender')
@@ -15,7 +15,7 @@ export class NutritionRecommenderController {
     // Get daily recommended calories and nutrition
     
     @ApiTags('User Daily Consumtion')
-    @UseGuards(AuthGuard)
+    @UseGuards(TokenGuard)
     @Get('daily-recomended-nutrition')
     async getDailyRecommendation(@Request() req){
         const userId: number = req.user.userId;

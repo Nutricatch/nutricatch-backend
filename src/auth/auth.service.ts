@@ -57,6 +57,16 @@ export class AuthService {
       return hashedPassword;
     }
 
-  
+    async validateGoogleUser(profile: any): Promise<any> {
+
+      if(!profile){
+        throw new UnauthorizedException();
+      }
+
+      return {
+        message: "User profile",
+        user: profile
+      };
+    }
 
 }

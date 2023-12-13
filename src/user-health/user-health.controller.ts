@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards, Request, Post, Body} from '@nestjs/common';
 import { UserHealthService } from './user-health.service';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { TokenGuard } from 'src/auth/token.guard';
 import { UpdateUserHealthDTO } from './dtos/update-user-health.dto';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -12,7 +12,7 @@ export class UserHealthController {
         ){}
         
     @ApiTags('User Health Data')
-    @UseGuards(AuthGuard)
+    @UseGuards(TokenGuard)
     @Get('profile')
     getProfile(@Request() req)
     {
@@ -20,7 +20,7 @@ export class UserHealthController {
     }
 
     @ApiTags('User Health Data')
-    @UseGuards(AuthGuard)
+    @UseGuards(TokenGuard)
     @Get('health')
     getUserHealth(@Request() req){
         const userId:number = req.user.userId;
@@ -28,7 +28,7 @@ export class UserHealthController {
     }
     
     @ApiTags('User Health Data')
-    @UseGuards(AuthGuard)
+    @UseGuards(TokenGuard)
     @Post('update')
     updateUserHealth(@Request() req, @Body() postData: UpdateUserHealthDTO){
         const userId:number = req.user.userId;
