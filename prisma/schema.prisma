@@ -37,6 +37,7 @@ enum ActivityLevel{
 model Health{
   id  Int @id @default(autoincrement())
   weight  Float?
+  height Float?
   age Int?
   gender Gender?
   activityLevel ActivityLevel?

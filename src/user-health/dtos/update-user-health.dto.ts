@@ -15,6 +15,11 @@ export class UpdateUserHealthDTO{
     @ApiProperty()
     @IsNumber()
     @Type(() => Number)
+    height?: number;
+
+    @ApiProperty()
+    @IsNumber()
+    @Type(() => Number)
     @IsNotEmpty()
     age?: number;
 
