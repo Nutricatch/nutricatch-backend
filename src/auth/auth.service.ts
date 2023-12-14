@@ -63,10 +63,46 @@ export class AuthService {
         throw new UnauthorizedException();
       }
 
+      const userEmail:string = profile.emails[0].value
+      const userName = profile.displayName
+      const randomPassword = await this.generateStrongPassword(12)
+
+      let user = await this.usersService.getUser({email: userEmail})
+
+      if (!user){
+        user = await this.usersService.createUser({
+          email: userEmail,
+          password: randomPassword,
+          name: userName
+        })
+      }
+
+      const token = await this.generateToken(user.id, user.name, user.email)
+
       return {
-        message: "User profile",
-        user: profile
+        message: "Google Auth",
+        token: token
       };
+    }
+
+    private async generateStrongPassword(length: number) {
+      const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+      const numericChars = '0123456789';
+      const specialChars = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+    
+      const allChars = uppercaseChars + lowercaseChars + numericChars + specialChars;
+    
+      let password = '';
+      
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * allChars.length);
+        password += allChars[randomIndex];
+      }
+      
+      password = await this.hashPassword(password)
+
+      return password;
     }
 
 }

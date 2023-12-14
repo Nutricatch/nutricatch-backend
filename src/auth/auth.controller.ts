@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get } from '@nestjs/common';
+import { Controller, HttpCode, Post, Body, HttpStatus, UseGuards, Request, Get, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
@@ -36,6 +36,9 @@ export class AuthController {
     @UseGuards(AuthGuard('google'))
     @Get('google/redirect')
     async googleAuthRedirect(@Request() req) {
+        if(!req.user){
+            throw new UnauthorizedException
+        }
         return req.user
     }
 
