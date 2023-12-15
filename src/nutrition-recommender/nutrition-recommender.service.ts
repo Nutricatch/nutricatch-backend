@@ -12,7 +12,7 @@ export class NutritionRecommenderService {
     async getDailyRecommendation(userId:number){
         const userHealth = await this.getUserHealth(userId)
         
-        const calories = await this.getDailyCaloriesRecommendation(userHealth)
+        const calories = this.getDailyCaloriesRecommendation(userHealth)
         const protein = this.getDailyProtein(calories)
         const fats = this.getDailyFats(calories)
         const carbohydrates = this.getDailyCarbohydrates(calories)
@@ -57,7 +57,29 @@ export class NutritionRecommenderService {
     }
     
     // We use the Harris-Benedict equation
-    async getDailyCaloriesRecommendation(userHealth: Health) {
+    getDailyCaloriesRecommendation(userHealth: Health) {
+        
+        let bmr = this.getBmr(userHealth)
+
+        let calorieOffset = this.getCalorieOffset(userHealth)
+        
+        bmr += calorieOffset
+
+        if(userHealth.activityLevel === "SEDENTARY"){
+            return bmr * 1.375
+        }
+
+        if(userHealth.activityLevel === "MODERATELY_ACTIVE"){
+            return bmr * 1.55
+        }
+
+        if(userHealth.activityLevel === "VERY_ACTIVE"){
+            return bmr * 1.725
+        }
+
+    }
+
+    private getBmr(userHealth: Health){
         const men_bmr = 88.362 
         + (9.247 * userHealth.weight) 
         + (4.799 * userHealth.height) 
@@ -68,20 +90,20 @@ export class NutritionRecommenderService {
         +(3.098 * userHealth.height)
         - (4.330 * userHealth.age)
 
-        const usedConst = userHealth.gender === "MALE" ? men_bmr : women_bmr
-        
-        if(userHealth.activityLevel === "SEDENTARY"){
-            return usedConst * 1.375
+        let bmr = userHealth.gender === "MALE" ? men_bmr : women_bmr
+        return bmr
+    }
+
+    private getCalorieOffset(userHealth: Health){
+        let caloricOffset = 0
+
+        if(userHealth.fitnessGoal === "WeightGain") {
+            caloricOffset = 400
+        } else if(userHealth.fitnessGoal === "WeightLoss") {
+            caloricOffset = -600
         }
 
-        if(userHealth.activityLevel === "MODERATELY_ACTIVE"){
-            return usedConst * 1.55
-        }
-
-        if(userHealth.activityLevel === "VERY_ACTIVE"){
-            return usedConst * 1.725
-        }
-
+        return caloricOffset
     }
 
     private async getUserHealth(userId: number){
