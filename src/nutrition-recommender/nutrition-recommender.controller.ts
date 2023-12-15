@@ -19,7 +19,7 @@ export class NutritionRecommenderController {
     @Get('daily-recomended-nutrition')
     async getDailyRecommendation(@Request() req){
         const userId: number = req.user.userId;
-        return await this.nutritionRecommenderService.getAllDailyRecommendation(userId)
+        return await this.nutritionRecommenderService.getDailyRecommendation(userId)
     }
 
 

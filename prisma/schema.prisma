@@ -34,12 +34,19 @@ enum ActivityLevel{
   VERY_ACTIVE
 }
 
+enum FitnessGoal{
+  WeightLoss
+  Maintenance
+  WeightGain
+}
+
 model Health{
   id  Int @id @default(autoincrement())
   weight  Float?
   height Float?
   age Int?
   gender Gender?
+  fitnessGoal FitnessGoal?
   activityLevel ActivityLevel?
   dailyConsumtion DailyConsumtion[]
   user User @relation(fields: [userId], references: [id] )

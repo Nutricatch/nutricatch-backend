@@ -1,19 +1,44 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma, Health } from '@prisma/client';
 import { UserHealthService } from 'src/user-health/user-health.service';
 
 @Injectable()
 export class NutritionRecommenderService {
 
     constructor(
-        private userHealthService: UserHealthService
+        private userHealthService: UserHealthService,
     ) { }
 
-    async getAllDailyRecommendation(userId:number){
-        const calories = await this.getDailyCaloriesRecommendation(userId)
+    async getDailyRecommendation(userId:number){
+        const userHealth = await this.getUserHealth(userId)
+        
+        const calories = await this.getDailyCaloriesRecommendation(userHealth)
         const protein = this.getDailyProtein(calories)
         const fats = this.getDailyFats(calories)
         const carbohydrates = this.getDailyCarbohydrates(calories)
-        return {calories: calories.toFixed(), protein, fats, carbohydrates}
+        const fiber = this.getDailyFiber()
+        const sodium = this.getDailyMaxSodium()
+        const sugar = this.getDailyMaxSugar(userHealth)
+        return {calories: calories.toFixed(), protein, fats, carbohydrates, fiber, sodium, sugar}
+    }
+
+    getDailyMaxSodium(){
+        // The World Health Organization suggests a limit of 2,000 mg of sodium a day.
+        return 2
+    }
+
+    getDailyMaxSugar(userHealth: Health){
+        if(userHealth.gender === "MALE"){
+            return 36
+        } else {
+            return 25
+        }
+    }
+
+    getDailyFiber(){
+        // The American Heart Association Eating Plan suggests eating a variety of food fiber sources.
+        // Total dietary fiber intake should be 25 to 30 grams a day from food, not supplements.
+        return 25
     }
 
     getDailyProtein(userDailyCalores:number,  ratio=0.3){
@@ -32,9 +57,7 @@ export class NutritionRecommenderService {
     }
     
     // We use the Harris-Benedict equation
-    async getDailyCaloriesRecommendation(userId: number) {
-        const userHealth = await this.getUserHealth(userId)
-
+    async getDailyCaloriesRecommendation(userHealth: Health) {
         const men_bmr = 88.362 
         + (9.247 * userHealth.weight) 
         + (4.799 * userHealth.height) 
