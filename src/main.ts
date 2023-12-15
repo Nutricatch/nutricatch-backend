@@ -7,7 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe({transform: true}))
-
   const config = new DocumentBuilder()
   .setTitle('Nutricath API')
   .setDescription('API for Nutricatch user authentication and resource access')
