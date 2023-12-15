@@ -4,9 +4,10 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserHealthModule } from './user-health/user-health.module';
 import { DailyConsumtionModule } from './daily-consumtion/daily-consumtion.module';
+import { NutritionRecommenderModule } from './nutrition-recommender/nutrition-recommender.module';
 
 @Module({
-  imports: [FoodsModule, AuthModule, ConfigModule.forRoot(), UserHealthModule, DailyConsumtionModule ],
+  imports: [FoodsModule, AuthModule, ConfigModule.forRoot(), UserHealthModule, DailyConsumtionModule, NutritionRecommenderModule ],
   providers: [],
 })
 export class AppModule {}

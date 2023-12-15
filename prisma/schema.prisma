@@ -16,6 +16,9 @@ model DailyConsumtion {
   carbohydrates Float?
   fat Float?
   protein Float?
+  salt Float?
+  sugar Float?
+  fiber Float?
   health Health @relation(fields: [healthId], references: [id] )
   healthId Int
 }
@@ -25,11 +28,26 @@ enum Gender{
   FEMALE
 }
 
+enum ActivityLevel{
+  SEDENTARY
+  MODERATELY_ACTIVE 
+  VERY_ACTIVE
+}
+
+enum FitnessGoal{
+  WeightLoss
+  Maintenance
+  WeightGain
+}
+
 model Health{
   id  Int @id @default(autoincrement())
   weight  Float?
+  height Float?
   age Int?
   gender Gender?
+  fitnessGoal FitnessGoal?
+  activityLevel ActivityLevel?
   dailyConsumtion DailyConsumtion[]
   user User @relation(fields: [userId], references: [id] )
   userId Int @unique
