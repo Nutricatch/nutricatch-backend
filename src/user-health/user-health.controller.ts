@@ -25,6 +25,7 @@ export class UserHealthController {
     getUserHealth(@Request() req){
         const userId:number = req.user.userId;
         return this.userHealthService.userHealth(userId)
+        
     }
     
     @ApiTags('User Health Data')

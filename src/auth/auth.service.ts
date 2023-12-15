@@ -35,13 +35,6 @@ export class AuthService {
       const hash = await this.hashPassword(newUserData.password)
       const userData = await this.usersService.createUser({ ...newUserData, password: hash,})
       const token = await this.generateToken(userData.id, userData.name, userData.email)
-
-      this.userHealthService.createUserHealth({
-        user: {
-          connect: {id: userData.id}
-        }
-      })
-
       return {message: "register complete", access_token: token}
     }
 

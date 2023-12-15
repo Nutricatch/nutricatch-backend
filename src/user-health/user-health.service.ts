@@ -15,6 +15,18 @@ export class UserHealthService {
       where: {userId}
     })
 
+    if(!userHealth){
+      await this.createUserHealth(
+        {
+          user: {
+            connect: {
+              id: userId
+            }
+          }
+         }
+      )
+    }
+
     return userHealth
   }
 

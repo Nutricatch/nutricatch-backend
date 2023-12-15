@@ -16,10 +16,10 @@ export class NutritionRecommenderService {
         const protein = this.getDailyProtein(calories)
         const fats = this.getDailyFats(calories)
         const carbohydrates = this.getDailyCarbohydrates(calories)
-        const fiber = this.getDailyFiber()
-        const sodium = this.getDailyMaxSodium()
-        const sugar = this.getDailyMaxSugar(userHealth)
-        return {calories: calories.toFixed(), protein, fats, carbohydrates, fiber, sodium, sugar}
+        const minFiber = this.getDailyFiber()
+        const maxSodium = this.getDailyMaxSodium()
+        const maxSugar = this.getDailyMaxSugar(userHealth)
+        return {calories: calories.toFixed(), protein, fats, carbohydrates, minFiber, maxSodium, maxSugar}
     }
 
     getDailyMaxSodium(){

@@ -10,9 +10,6 @@ export class NutritionRecommenderController {
     constructor(
         private nutritionRecommenderService: NutritionRecommenderService
     ){}
-
-    //TODO
-    // Get daily recommended calories and nutrition
     
     @ApiTags('User Daily Consumtion')
     @UseGuards(TokenGuard)
