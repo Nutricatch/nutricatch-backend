@@ -11,7 +11,13 @@ export class FoodsService {
     return parsedData;
   }
 
-  getFoods(): string[] {
+  getFoods() {
     return this.getFoodsData();
   }
+
+  getFoodByName(name: string) {
+    const foodList = this.getFoods()
+    return foodList.find(food => food.name === name);
+  }
+
 }

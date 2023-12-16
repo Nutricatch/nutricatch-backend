@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { FoodsService } from './foods.service';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -12,4 +12,17 @@ export class FoodsController {
     const foodData = await this.foodService.getFoods();
     return foodData;
   }
+
+  @ApiTags('Foods')
+  @Get(':name')
+  getFoodByName(@Param('name') name: string) {
+    const food = this.foodService.getFoodByName(name);
+
+    if (food) {
+      return food;
+    } else {
+      return { error: 'Food not found' };
+    }
+  }
+
 }
