@@ -5,8 +5,8 @@ import { IsEnum, IsString, IsInt, IsNumber, IsNotEmpty } from "class-validator";
 import { Type } from "class-transformer";
 import { ApiProperty } from "@nestjs/swagger";
 
-export class UpdateUserHealthDTO{
-    
+export class UpdateUserHealthDTO {
+
     @ApiProperty()
     @Type(() => Number)
     weight?: number;
@@ -19,20 +19,23 @@ export class UpdateUserHealthDTO{
     @Type(() => Number)
     age?: number;
 
-    @ApiProperty({enum: ['MALE', 'FEMALE']})
+    @ApiProperty({ enum: ['MALE', 'FEMALE'] })
     gender?: Gender
-    
-    @ApiProperty({enum: ["SEDENTARY",
-        "LIGHTLY",
-        "MODERATELY",
-        "VERY_ACTIVE",
-        "EXTREMELY_ACTIVE"]})
+
+    @ApiProperty({
+        enum: [
+            "SEDENTARY",
+            "MODERATELY_ACTIVE",
+            "VERY_ACTIVE"]
+    })
     activityLevel?: ActivityLevel
 
-    @ApiProperty({enum: [
-        "WeightLoss",
-  "Maintenance",
-  "WeightGain"]})
+    @ApiProperty({
+        enum: [
+            "WeightLoss",
+            "Maintenance",
+            "WeightGain"]
+    })
     @IsString()
     fitnessGoal?: FitnessGoal
 
