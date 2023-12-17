@@ -9,7 +9,6 @@ export class RestaurantService {
     private apiKey =  process.env.MapsAPIKey
 
     async searchNearbyRestaurants(latitude: number, longitude: number, maxResultCount:number, radius:number) {
-        console.log(maxResultCount)
       const requestData = {
             includedTypes: ['restaurant'],
             maxResultCount,
