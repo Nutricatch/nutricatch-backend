@@ -16,7 +16,7 @@ export class UserHealthService {
     })
 
     if(!userHealth){
-      await this.createUserHealth(
+      userHealth =  await this.createUserHealth(
         {
           user: {
             connect: {

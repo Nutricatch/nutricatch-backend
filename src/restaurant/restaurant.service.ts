@@ -8,7 +8,7 @@ export class RestaurantService {
     private apiUrl = "https://places.googleapis.com/v1/places:searchNearby"
     private apiKey =  process.env.MapsAPIKey
 
-    async searchNearbyRestaurants(latitude: number, longitude: number, maxResultCount=10) {
+    async searchNearbyRestaurants(latitude: number, longitude: number, maxResultCount:number, radius:number) {
         const requestData = {
             includedTypes: ['restaurant'],
             maxResultCount,
@@ -18,7 +18,7 @@ export class RestaurantService {
                   latitude,
                   longitude,
                 },
-                radius: 500.0,
+                radius,
               },
             },
           };
@@ -28,7 +28,7 @@ export class RestaurantService {
               headers: {
                 'Content-Type': 'application/json',
                 'X-Goog-Api-Key': this.apiKey,
-                'X-Goog-FieldMask': 'places.displayName',
+                'X-Goog-FieldMask': 'places.displayName,places.id,places.photos',
               },
             });
       

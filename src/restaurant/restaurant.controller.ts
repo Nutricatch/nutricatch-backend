@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import { ApiTags } from '@nestjs/swagger';
+import { SearchNearbyRestaurantsDTO } from './dtos/search-nearby-restaurants.dto';
 
 @Controller('restaurants')
 export class RestaurantController {
@@ -9,17 +10,16 @@ export class RestaurantController {
     ) { }
 
     @ApiTags('restaurants')
-    @Get('search/:latitude/:longitude/:counts')
+    @Get('search')
     async searchNearbyRestaurants(
-        @Param('latitude') latitude: number,
-        @Param('longitude') longitude: number,
-        @Param('counts') counts: number
+        @Query() data: SearchNearbyRestaurantsDTO ,
     ) {
         try {
             const result = await this.restaurantService.searchNearbyRestaurants(
-                latitude,
-                longitude,
-                counts
+                data.latitude,
+                data.longitude,
+                data.counts,
+                data.radius
             );
             return result;
         } catch (error) {
