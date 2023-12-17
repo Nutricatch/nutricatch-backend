@@ -1,7 +1,6 @@
-import { IsNumber, IsLatitude, IsLongitude } from "class-validator";
-import { Type } from "class-transformer";
+import { IsLatitude, IsLongitude, } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Optional } from "@nestjs/common";
+import { Type } from "class-transformer";
 
 export class SearchNearbyRestaurantsDTO {
     @ApiProperty({description: "Use the decimal format", example: "6.399702569134995"})
@@ -13,9 +12,10 @@ export class SearchNearbyRestaurantsDTO {
     longitude: number
 
     @ApiProperty({description: "Maximum output counts", required:false})
-    @Optional()
+    @Type(() => Number)
     counts: number = 5
 
     @ApiProperty({description: "Search radius", required:false})
+    @Type(() => Number)
     radius: number = 1000
 }
