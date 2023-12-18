@@ -11,7 +11,6 @@ export class DiamondsController {
         private diamondsService: DiamondsService
     ){}
 
-    // Add diamonds
     @ApiTags('Diamonds')
     @UseGuards(TokenGuard)
     @Get()
