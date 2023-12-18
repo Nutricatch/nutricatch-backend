@@ -2,6 +2,7 @@ import { Controller, Get, Request, UseGuards, Post, Body } from '@nestjs/common'
 import { DiamondsService } from './diamonds.service';
 import { ApiTags } from '@nestjs/swagger';
 import { TokenGuard } from 'src/auth/token.guard';
+import { AddDiamondsDTO } from './add-diamonds.dto';
 
 @Controller('diamonds')
 export class DiamondsController {
@@ -30,8 +31,8 @@ export class DiamondsController {
     @ApiTags('Diamonds')
     @UseGuards(TokenGuard)
     @Post('add')
-    async addDiamonds(@Request() req, @Body() diamondCounts: number){
+    async addDiamonds(@Request() req, @Body() data: AddDiamondsDTO){
         const userId:number = req.user.userId;
-        return 
+        return this.diamondsService.addDiamond(userId, data.diamondCounts)
     }
 }
