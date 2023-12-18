@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 
 export class SearchNearbyRestaurantsDTO {
-    @ApiProperty({description: "Use the decimal format", example: "6.399702569134995"})
+    @ApiProperty({description: "Use the decimal format", example: "-6.399702569134995"})
     @IsLatitude()
     latitude: number
 

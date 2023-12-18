@@ -1,7 +1,8 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import { ApiTags } from '@nestjs/swagger';
 import { SearchNearbyRestaurantsDTO } from './dtos/search-nearby-restaurants.dto';
+import { GetFirstImageRestaurantDTO } from './dtos/get-first-image-restaurant.dto';
 
 @Controller('restaurants')
 export class RestaurantController {
@@ -15,7 +16,7 @@ export class RestaurantController {
         @Query() data: SearchNearbyRestaurantsDTO ,
     ) {
         try {
-            const result = await this.restaurantService.searchNearbyRestaurants(
+            const result = await this.restaurantService.searchNearbyOpenRestaurants(
                 data.latitude,
                 data.longitude,
                 data.counts,
@@ -26,4 +27,11 @@ export class RestaurantController {
             return { error: error.message || 'Internal Server Error' };
         }
     }
+    
+    @ApiTags('restaurants')
+    @Get('first-photo-url')
+    async getImage(@Query() data: GetFirstImageRestaurantDTO){
+        return await this.restaurantService.getFirstPhotoById(data.restaurantId, data.width, data.height)
+    }
+
 }
