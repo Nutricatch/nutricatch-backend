@@ -42,8 +42,8 @@ export class DailyConsumtionService {
             const data = { ...newData, health: { connect: { id: userHealth.id } } }
             return await this.prismaService.dailyConsumtion.create({ data })
         }
-        catch {
-            throw new NotAcceptableException("The body is not acceptable");
+        catch (error) {
+            throw new NotAcceptableException("The body is not acceptable: error " + error);
         }
     }
 

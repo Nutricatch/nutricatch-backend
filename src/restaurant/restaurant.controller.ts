@@ -13,7 +13,7 @@ export class RestaurantController {
     @ApiTags('restaurants')
     @Get('search')
     async searchNearbyRestaurants(
-        @Query() data: SearchNearbyRestaurantsDTO ,
+        @Query() data: SearchNearbyRestaurantsDTO,
     ) {
         try {
             const result = await this.restaurantService.searchNearbyOpenRestaurants(
@@ -27,10 +27,15 @@ export class RestaurantController {
             return { error: error.message || 'Internal Server Error' };
         }
     }
-    
+    @ApiTags('restaurants')
+    @Get('search-all')
+    async searchAllNoLimit(@Query() data: SearchNearbyRestaurantsDTO) {
+        return await this.restaurantService.getAllNearbyRestaurants(data.latitude, data.longitude, data.counts, data.radius)
+    }
+
     @ApiTags('restaurants')
     @Get('first-photo-url')
-    async getImage(@Query() data: GetFirstImageRestaurantDTO){
+    async getImage(@Query() data: GetFirstImageRestaurantDTO) {
         return await this.restaurantService.getFirstPhotoById(data.restaurantId, data.width, data.height)
     }
 

@@ -1,8 +1,13 @@
-import { IsNumber} from "class-validator";
+import { IsNumber, IsString} from "class-validator";
 import { Type } from "class-transformer";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateDailyConsumtionDTO{
+
+
+    @ApiProperty()
+    @IsString()
+    foodName: string
 
     @ApiProperty()
     @IsNumber()
