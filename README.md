@@ -37,6 +37,14 @@ Authorization: Bearer ACCESS_TOKEN
 
 ## Installation
 
+Add .env file with these variables:
+- DATABASE_URL
+- JWT_CONSTANT
+- clientID
+- clientSecret
+- callbackURL
+- MapsAPIKey
+
 ```bash
 $ npm install
 ```
